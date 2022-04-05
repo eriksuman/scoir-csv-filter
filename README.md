@@ -27,3 +27,20 @@ Ken,Thompson,19430204
 Rob,Pike,19560101
 Robert,Griesemer,19640609
 ```
+
+## How-To
+
+1. Download a Go compiler [here](https://go.dev/dl/) (version 1.18 or greater).
+2. `cd` into the root project directory.
+3. Run `go build cmd/csvfilter/csvfilter.go`. A binary file (`csvfilter`) should be created.
+4. Run `./csvfilter` and follow the prompts :)
+
+NOTE: A `csvfilter` binary compiled for darwin/amd64 is included which will work on most Intel based Macs.
+
+## Assumptions
+
+- Input CSV file conforms to [RFC 4180](https://www.rfc-editor.org/rfc/rfc4180.html) (as required by the Go `csv` package).
+    - The first line is always a header and subsequent lines will have the same number of fields as the header.
+    - If any record is missing one of `first_name`, `last_name`, or `dob`, the data is malformed and an error should be returned.
+- Any errors in data format or integrity should be fatal.
+- The `dob` field may not be blank for any record.
